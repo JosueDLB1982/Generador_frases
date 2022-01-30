@@ -19,8 +19,10 @@ const Button = styled.button`
   border: 2px solid black;
 `
 
-const consultAPI = () => {
-  console.log('consultando...')
+const consultAPI = async() => {
+  const api = await fetch('https://breakingbadapi.com/api/quote/random')
+  const sentence = await api.json()
+  console.log(sentence[0])
 }
 
 function App() {
