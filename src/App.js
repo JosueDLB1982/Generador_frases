@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styled from "@emotion/styled"
 import Sentence from "./components/Sentence"
 
@@ -18,6 +18,24 @@ const Button = styled.button`
   padding: 1rem 3rem;
   font-size: 2rem;
   border: 2px solid black;
+  border-radius: .5rem;
+
+  :hover {
+    cursor: pointer;
+    background: -webkit-linear-gradient(top left, green 0%, green 40%, green 100%)
+  }
+`
+
+const Personalizacion = styled.a`
+  display: block;
+  font-family: 'Lato', sans-serif;
+  color: black;
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  &:hover {
+      color: greenyellow; 
+  }
 `
 
 
@@ -31,7 +49,15 @@ function App() {
     setSentence(sentence[0])
   }
 
+  /* Cargar una frase automáticamente al cargar la página */
+
+  useEffect(() => {
+    consultAPI()
+  }, [])
+
   return (
+    <>
+    <Personalizacion href="https://github.com/JosueDLB1982" target='blank'>Josue Lopez - Developer Treinee</Personalizacion>
     <Conteiner>
       <Sentence
         sentence={sentence}
@@ -42,6 +68,7 @@ function App() {
         Obtener Frase
       </Button>
     </Conteiner>
+    </>
   )
 }
 
