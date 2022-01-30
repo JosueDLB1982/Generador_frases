@@ -1,5 +1,7 @@
+import { useState } from "react"
 import React from "react"
 import styled from "@emotion/styled"
+import Sentence from "./components/Sentence"
 
 const Conteiner = styled.div`
   display: flex;
@@ -19,15 +21,22 @@ const Button = styled.button`
   border: 2px solid black;
 `
 
-const consultAPI = async() => {
-  const api = await fetch('https://breakingbadapi.com/api/quote/random')
-  const sentence = await api.json()
-  console.log(sentence[0])
-}
+
 
 function App() {
+  const [sentence, setSentence] = useState({})
+
+  const consultAPI = async () => {
+    const api = await fetch('https://breakingbadapi.com/api/quote/random')
+    const sentence = await api.json()
+    setSentence(sentence[0])
+  }
+
   return (
     <Conteiner>
+      <Sentence
+        sentence={sentence}
+      />
       <Button
         onClick={() => consultAPI()}
       >
